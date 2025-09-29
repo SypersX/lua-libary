@@ -21,8 +21,10 @@ RunService.Heartbeat:Connect(function(Delta)
 			}
 			continue
 		end
+
 		local isSwimming = Humanoid:GetState() == Enum.HumanoidStateType.Swimming
-		if Humanoid.FloorMaterial == Enum.Material.Air and not isSwimming then 
+		local isSeated = Humanoid:GetState() == Enum.HumanoidStateType.Seated
+		if Humanoid.FloorMaterial == Enum.Material.Air and not isSwimming and not isSeated then 
 			PlayerInfos[Player.Name].TimeAirborne += Delta
 			if PlayerInfos[Player.Name].TimeAirborne > MaxAirborneTime then
 				PlayerInfos[Player.Name].TimeAirborne = 0
@@ -36,5 +38,3 @@ RunService.Heartbeat:Connect(function(Delta)
 		end
 	end
 end)
-
-print("Anti-Fly with Swimming Support loaded!")
