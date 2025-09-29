@@ -1,8 +1,8 @@
---We'll be using RunService to run code every frame
 local RunService = game:GetService("RunService")
 local Players = game:GetService("Players")
 local PlayerInfos = {}
 local MaxAirborneTime = 2
+
 RunService.Heartbeat:Connect(function(Delta)
 	for _, Player in pairs(Players:GetPlayers()) do 
 		local Character = Player.Character
@@ -14,12 +14,11 @@ RunService.Heartbeat:Connect(function(Delta)
 			continue
 		end
 		local Info = PlayerInfos[Player.Name]
-		if not Info then
+		if not Info then 
 			PlayerInfos[Player.Name] = {
 				LastCFrameOnGround = Character:GetPivot(), 
 				TimeAirborne = 0
 			}
-
 			continue
 		end
 		local isSwimming = Humanoid:GetState() == Enum.HumanoidStateType.Swimming
